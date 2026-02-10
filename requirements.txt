@@ -1,0 +1,6 @@
+requests==2.32.3
+selenium==4.23.1
+rich==13.7.1
+webdriver-manager==4.0.2
+pyinstaller==6.11.0
+Pillow==10.0.0
