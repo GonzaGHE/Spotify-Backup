@@ -26,11 +26,15 @@ Esta herramienta permite realizar **copias de seguridad** de tus playlists y can
 
 ---
 
-## 📥 Descarga (Modo Fácil)
+## 📥 ¿Dónde Descargar el Programa?
 
-1. Ve a la sección de **[Releases](../../releases)** o **Actions** de este repositorio.
-2. Descarga el archivo `SpotifyBackup.exe`.
-3. Ejecútalo.
+Cada vez que se actualiza el código, GitHub genera un nuevo ejecutable automáticamente. Esta es la forma más rápida de tener la última versión.
+
+1. Ve a la pestaña **[Actions](../../actions)** de este repositorio (arriba).
+2. Haz click en el **título del último flujo de trabajo** (el de la lista, arriba del todo) que tenga un tic verde ✅.
+3. Desplázate hacia abajo hasta la sección **Artifacts**.
+4. Haz click en **SpotifyBackup-EXE**.
+5. GitHub descargará un archivo `.zip`. **Descomprímelo** y encontrarás `SpotifyBackup.exe` listo para usar.
 
 ---
 
