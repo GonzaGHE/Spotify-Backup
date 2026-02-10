@@ -53,3 +53,15 @@ jobs:
       with:
         name: SpotifyBackup-EXE
         path: dist/SpotifyBackup.exe
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/heads/main')
+      with:
+        tag_name: latest
+        name: Latest Build
+        files: dist/SpotifyBackup.exe
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
