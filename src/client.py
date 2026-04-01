@@ -53,18 +53,29 @@ class SpotifyClient:
         return items
 
     def get_playlists(self):
-        """Obtiene playlists creadas por el usuario"""
+        """Obtiene playlists creadas por el usuario de forma segura"""
         raw_items = self._get_paginated(f"{self.base_url}/me/playlists?limit=50", "Playlists")
         playlists = []
         for item in raw_items:
-            # Filtramos solo las que son del usuario o colaborativas
-            if item['owner']['id'] == self.user_id or item.get('collaborative'):
+            # Protegemos también 'owner' por si acaso viene vacío
+            owner_id = item.get('owner', {}).get('id')
+            
+            if owner_id == self.user_id or item.get('collaborative'):
+                
+                # Extracción segura de 'tracks'
+                tracks_data = item.get('tracks', {})
+                tracks_href = tracks_data.get('href')
+                
+                # Si no hay enlace a las canciones (probablemente es una carpeta), la ignoramos
+                if not tracks_href:
+                    continue
+
                 playlists.append({
-                    "name": item['name'],
-                    "description": item['description'],
-                    "public": item['public'],
-                    "tracks_href": item['tracks']['href'],
-                    "uri": item['uri']
+                    "name": item.get('name', 'Sin nombre'),
+                    "description": item.get('description', ''),
+                    "public": item.get('public', False),
+                    "tracks_href": tracks_href,
+                    "uri": item.get('uri', '')
                 })
         return playlists
 
